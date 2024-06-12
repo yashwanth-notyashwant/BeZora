@@ -31,6 +31,7 @@ class _createUserScreenState extends State<createUserScreen> {
           key: _formKey,
           child: Container(
             color: Color.fromRGBO(250, 247, 247, 1),
+            width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: SingleChildScrollView(
               child: Padding(
@@ -180,12 +181,16 @@ class _createUserScreenState extends State<createUserScreen> {
                       ),
                       onTap: ((startLoading, stopLoading, btnState) async {
                         startLoading();
-                        if (_formKey.currentState!.validate()) {
-                          await fetchUsers(
-                              emailController.text.toString().trim(),
-                              emailPasswordController.text.toString().trim(),
-                              contactController.text.toString().trim());
-                        }
+                        // if (_formKey.currentState!.validate()) {
+                        //   await fetchUsers(
+                        //       emailController.text.toString().trim(),
+                        //       emailPasswordController.text.toString().trim(),
+                        //       contactController.text.toString().trim());
+                        // }
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
                         stopLoading();
                         return;
                       }),

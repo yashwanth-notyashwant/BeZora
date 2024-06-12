@@ -9,10 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
 import 'dart:ui';
 
-void main() {
-  runApp(LoginPage());
-}
-
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
@@ -149,7 +145,9 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 onTap: ((startLoading, stopLoading, btnState) async {
                   startLoading();
-
+                  await Future.delayed(Duration(seconds: 3), () {
+                    print('3 seconds have passed!');
+                  });
                   // call the function here
                   await handleEmailSignUp(
                     context,
@@ -395,6 +393,9 @@ class _LoginFormState extends State<LoginForm> {
     String email,
     String password,
   ) async {
+    Future.delayed(Duration(seconds: 3), () {
+      print('3 seconds have passed!');
+    });
     // try {
     //   UserCredential userCredential =
     //       await FirebaseAuth.instance.createUserWithEmailAndPassword(

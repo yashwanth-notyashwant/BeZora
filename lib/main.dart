@@ -59,21 +59,23 @@ class _SplashScreenState extends State<SplashScreen> {
     '',
   ]; // The full text to display.
   bool isLoading = false;
+  List<double> opacities = []; // List to control the opacity of each letter.
+
   @override
   void initState() {
     super.initState();
+    // Initialize opacities list with 0.0 (fully transparent) for each letter.
+    opacities = List.filled(fullText.length, 0.0);
 
     // Use a Timer to add one letter at a time with a delay.
     Timer.periodic(Duration(milliseconds: 80), (timer) {
       if (currentIndex < fullText.length) {
         setState(() {
           displayedText += fullText[currentIndex];
+          opacities[currentIndex] = 1.0; // Set opacity to 1.0 (fully opaque).
           currentIndex++;
         });
-      }
-      // future delay for a second
-
-      else {
+      } else {
         setState(() {
           isLoading = true;
         });
@@ -124,13 +126,22 @@ class _SplashScreenState extends State<SplashScreen> {
           )
         : Scaffold(
             body: Center(
-              child: Text(
-                displayedText,
-                style: GoogleFonts.lobster(
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(displayedText.length, (index) {
+                  return AnimatedOpacity(
+                    opacity: opacities[index],
+                    duration: Duration(milliseconds: 300),
+                    child: Text(
+                      displayedText[index],
+                      style: GoogleFonts.lobster(
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  );
+                }),
               ),
             ),
           );
