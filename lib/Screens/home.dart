@@ -1,4 +1,5 @@
 import 'package:bezora/Screens/posts_screen.dart';
+import 'package:bezora/Screens/searchScreem.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -34,93 +35,89 @@ class _HomeState extends State<Home> {
     AddNFTScreen(),
     CollectionsPage(),
     ProfilePage(),
+    SearchScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Custom AppBar'),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Implement search functionality here
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {
-              // Implement more options here
-            },
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                // Handle the home action here
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () {
-                // Handle the settings action here
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.contact_mail),
-              title: Text('Contact'),
-              onTap: () {
-                // Handle the contact action here
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Custom AppBar'),
+      //   leading: Builder(
+      //     builder: (BuildContext context) {
+      //       return IconButton(
+      //         icon: Icon(Icons.menu),
+      //         onPressed: () {
+      //           Scaffold.of(context).openDrawer();
+      //         },
+      //         tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+      //       );
+      //     },
+      //   ),
+      //   actions: <Widget>[
+      //     IconButton(
+      //       icon: Icon(Icons.search),
+      //       onPressed: () {
+      //         // Implement search functionality here
+      //       },
+      //     ),
+      //     IconButton(
+      //       icon: Icon(Icons.more_vert),
+      //       onPressed: () {
+      //         // Implement more options here
+      //       },
+      //     ),
+      //   ],
+      // ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     padding: EdgeInsets.zero,
+      //     children: <Widget>[
+      //       DrawerHeader(
+      //         decoration: BoxDecoration(
+      //           color: Colors.blue,
+      //         ),
+      //         child: Text(
+      //           'Drawer Header',
+      //           style: TextStyle(
+      //             color: Colors.white,
+      //             fontSize: 24,
+      //           ),
+      //         ),
+      //       ),
+      //       ListTile(
+      //         leading: Icon(Icons.home),
+      //         title: Text('Home'),
+      //         onTap: () {
+      //           // Handle the home action here
+      //           Navigator.pop(context);
+      //         },
+      //       ),
+      //       ListTile(
+      //         leading: Icon(Icons.settings),
+      //         title: Text('Settings'),
+      //         onTap: () {
+      //           // Handle the settings action here
+      //           Navigator.pop(context);
+      //         },
+      //       ),
+      //       ListTile(
+      //         leading: Icon(Icons.contact_mail),
+      //         title: Text('Contact'),
+      //         onTap: () {
+      //           // Handle the contact action here
+      //           Navigator.pop(context);
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
         items: <Widget>[
           Icon(
-            Icons.home,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.add,
+            Icons.circle,
             size: 30,
             color: Colors.white,
           ),
@@ -130,14 +127,25 @@ class _HomeState extends State<Home> {
             color: Colors.white,
           ),
           Icon(
+            Icons.add,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
             Icons.perm_identity,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.search,
             size: 30,
             color: Colors.white,
           ),
         ],
         color: Colors.black,
         buttonBackgroundColor: Colors.black,
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 24, 24, 24),
+        // backgroundColor: Colors.transparent,
         animationCurve: Curves.easeInOut,
         animationDuration: Duration(milliseconds: 300),
         onTap: (index) {
